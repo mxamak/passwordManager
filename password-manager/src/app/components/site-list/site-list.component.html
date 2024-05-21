@@ -1,0 +1,67 @@
+<div class="container mx-auto my-16 px-10">
+    <h1 class="text-5xl mt-0 mb-5">PasswordKeep Password Manager</h1>
+    <p class="mb-5">In today's digital age, safeguarding your online presence is more crucial than ever. Welcome to SecurePass, the ultimate password manager designed to simplify and strengthen your online security. With SecurePass, you can effortlessly store, manage, and generate complex passwords, ensuring your sensitive information remains protected against cyber threats. Say goodbye to password fatigue and hello to peace of mind with PasswordKeep—your trusted companion for a safer, more secure digital life.</p>
+    <button class="mb-5 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
+        Add New Site
+    </button>
+    <!-- Add New site Form -->
+
+    <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-900">
+        <h2 class="text-3xl text-center">{{formState}} Site</h2>
+        <p class="text-center">Fill out the following form to {{formState}} site</p>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+
+            <div class="flex flex-col">
+                <label class="text-lg font-medium mb-2">Site Name</label>
+                <input [(ngModel)]="siteName" type="text" name="siteName" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-lg font-medium mb-2">Site URL</label>
+                <input [(ngModel)]="siteUrl" type="text" name="siteUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-lg font-medium mb-2">Site Image Url</label>
+                <input [(ngModel)]="siteImgUrl" type="text" name="siteImgUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+            </div>
+
+            <button type="submit" class="mt-10 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
+                {{formState}} Site
+            </button>
+            <button type="button" class="mt-10 mx-0.5 px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md">
+                Cancel
+            </button>
+        </form>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div *ngFor="let site of allSites | async" class="shadow-lg border-2 border-gray-900 ">
+            <img [src]="site.siteImgUrl" alt="placeholder">
+            <h3 class="p-3 text-xl font-bold">{{site.siteName}}</h3>
+            <div class="m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">
+                {{site.siteUrl}}
+            </div>
+            <div class="flex justify-between gap-2 my-3 ml-3 justify-start lg:justify-center">
+                <!-- Add New Password Button -->
+                <button class="px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md lg:w-auto">
+                    Add New Password
+                </button>
+                <!-- Edit Button -->
+                <button 
+                (click)="editSite(site.siteName, site.siteUrl, site.ImgUrl, site.id)"
+                class="px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md lg:w-auto">
+                    Edit
+                </button>
+                <!-- Delete Button -->
+                <button 
+                (click)="deleteSite(site.id)"
+                class="px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md lg:w-auto pr-4">
+                    Delete
+                </button>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
