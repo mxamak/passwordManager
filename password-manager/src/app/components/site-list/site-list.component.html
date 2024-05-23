@@ -4,6 +4,12 @@
     <button class="mb-5 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
         Add New Site
     </button>
+
+    
+    <!--Pop-up message-->
+    <div *ngIf="isSuccess" class="p-5 my-3 bg-green-300 text-teal-900 shadow-lg rounded-lg">
+        {{successMessage}}
+    </div>
     <!-- Add New site Form -->
 
     <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-900">
@@ -44,12 +50,15 @@
             </div>
             <div class="flex justify-between gap-2 my-3 ml-3 justify-start lg:justify-center">
                 <!-- Add New Password Button -->
-                <button class="px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md lg:w-auto">
+                <button 
+                [routerLink]="['/addPassword']"
+                [queryParams]="{id: site.id, siteName: site.siteName, siteUrl: site.siteUrl, siteImgUrl: site.siteImgUrl}"
+                class="px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md lg:w-auto">
                     Add New Password
                 </button>
                 <!-- Edit Button -->
                 <button 
-                (click)="editSite(site.siteName, site.siteUrl, site.ImgUrl, site.id)"
+                (click)="editSite(site.siteName, site.siteUrl, site.siteImgUrl, site.id)"
                 class="px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md lg:w-auto">
                     Edit
                 </button>
