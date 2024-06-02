@@ -1,41 +1,104 @@
-<section class="bg-teal-100">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen">
-        <div class="w-full border-4 border-gray-900 bg-gray-300 rounded-lg shadow-lg max-w-md px-5 py-5">
-            <h1 class="text-2xl font-bold text-gray-900">
-                Log In To Your Account
-            </h1>
-            <br>
-            
-            <!-- Error Message -->
-            <div *ngIf="isError" class="p-5 my-3 bg-red-200 text-red-900 shadow-lg">
-                The Username or Password is incorrect
-            </div>
-
-
-
-            <form #f="ngForm" class="space-y-6" (ngSubmit)="onSubmit(f.value)">
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">
-                        Your Email
-                    </label>
-                    <input type="email" ngModel name="email" placeholder="youremail@example.com"
-                    class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-900 text-gray-900 rounded-lg">
-                </div>
-
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">
-                        Your Password
-                    </label>
-                    <input type="password" ngModel name="password" placeholder="*************"
-                    class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-900 text-gray-900 rounded-lg"
-                    >
-                </div>
-
-                <button class="w-full text-white bg-gray-500 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    Sign In
-                </button>
-
-            </form>
-        </div>
+<div  class="min-h-screen flex bg-cover bg-center bg-fixed" style="background-image: url('../../../assets/background.png');">
+  <!-- Left content -->
+  <div class="flex-1 flex items-center justify-center pr-5 w-full">
+    <div class="max-w px-8 py-6" style="background-image: linear-gradient(to right, #0e1b42, #200037, transparent);">
+      <h1 class="text-4xl md:text-6xl lg:text-6xl font-bold pr-5" style="color: #ffffff;">Welcome to PasswordKeep</h1>
+      <p class="mt-4 text-white">Unlock a stress-free online experience with our password manager. Forget the hassle of forgotten passwords—let's keep your accounts safe and simple. Welcome to effortless security!</p>
     </div>
-</section>
+  </div>
+
+  <!-- Right content - login form -->
+  <div class="flex-1 flex items-center justify-center pr-5 pl-5">
+    <div class="w-full max-w-md px-8 py-6 bg-[#bfcfff]/50 rounded-lg shadow-lg">
+      <h1 *ngIf="!isLogin" class="text-2xl text-center font-bold text-gray-900 mb-4">Create Your Account</h1>
+      <h1 *ngIf="isLogin" class="text-2xl font-bold text-gray-900 mb-4">Log In To Your Account</h1>
+      <!-- Error Message -->
+      <div *ngIf="isError" class="p-5 my-3 bg-red-200 text-red-900 shadow-lg">
+        {{ isLogin ? 'The Username or Password is incorrect' : 'Registration failed. Please try again.' }}
+      </div>
+
+      <form *ngIf="isLogin; else registerForm" #f="ngForm" class="space-y-6" (ngSubmit)="onSubmit(f.value)">
+        <!-- Email input -->
+        <div>
+          <label class="block mb-2 text-base font-medium text-gray-900">Your Email</label>
+          <input type="email" ngModel name="email" placeholder="youremail@example.com" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-900 text-gray-900 rounded-lg">
+        </div>
+
+        <!-- Password input -->
+        <div>
+          <label class="block mb-2 text-base font-medium text-gray-900">Your Password</label>
+          <input type="password" ngModel name="password" placeholder="*************" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-950 text-gray-900 rounded-lg">
+        </div>
+        <br>
+
+        <!-- Sign in button -->
+        <button class="w-full text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign In</button>
+        <button type="button"  (click)="toggleForm()">Don't have an account? Sign up now!</button>
+      </form>
+
+      <ng-template #registerForm>
+        <form #f="ngForm" class="space-y-6" (ngSubmit)="onSubmit(f.value)">
+          <!-- Name input -->
+          <div>
+            <label class="block mb-2 text-base font-medium text-gray-900">Your Name</label>
+            <input type="text" ngModel name="name" placeholder="John Doe" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-900 text-gray-900 rounded-lg">
+          </div>
+          <!-- Email input -->
+          <div>
+            <label class="block mb-2 text-base font-medium text-gray-900">Your Email</label>
+            <input type="email" ngModel name="email" placeholder="youremail@example.com" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-900 text-gray-900 rounded-lg">
+          </div>
+
+          <!-- Password input -->
+          <div>
+            <label class="block mb-2 text-base font-medium text-gray-900">Your Password</label>
+            <input type="password" ngModel name="password" placeholder="*************" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-950 text-gray-900 rounded-lg">
+          </div>
+          <div>
+            <label class="block mb-2 text-base font-medium text-gray-900">Confirm Password</label>
+            <input type="password" ngModel name="confirmPassword" placeholder="*************" class="block w-full p-2.5 text-sm bg-gray-50 border-4 border-gray-950 text-gray-900 rounded-lg">
+          </div>
+
+          <!-- Sign Up button -->
+          <button class="w-full text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
+          <button type="button" (click)="toggleForm()">Already have an account? Sign in!</button>
+        </form>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<!-- About us -->
+<div id="about" class="w-full px-8 py-16 bg-[#bfcfff] rounded-lg shadow-lg ">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">About Us</h2>
+    <br>
+    <p class="text-gray-900 text-center">At PasswordKeep, we pride ourselves on providing more than just a password management solution. With our safe, encrypted online password library, your sensitive information remains shielded from prying eyes, ensuring only you have access. Our mission is to simplify your digital life by offering a seamless, secure experience. Say goodbye to the hassle of remembering passwords or storing them insecurely—we've got you covered. With PasswordKeep, managing and securing your passwords has never been easier.</p>
+
+<br>
+<br>
+<button id="id" class="flex items-center justify-center  max-w-md mx-auto bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-4 justify-center align-center" (click)="toggleForm2()">Contact Us</button>
+
+<!-- Contact Form -->
+<div  *ngIf="showForm" class="flex items-center justify-center mt-1 bg-[#bfcfff]">
+    <div class="w-full md:w-1/2 mt-4 p-6 bg-[#111827] rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-white mb-4">Get In Touch</h2>
+      <form (ngSubmit)="uponSubmit(contactForm)" #contactForm="ngForm">
+        <div class="mb-4">
+          <label for="name" class="text-white">Your Name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="formData.name" placeholder="John Doe" class="w-full bg-[#dfe7ff] text-black rounded-lg px-4 py-2">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="text-white">Your Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="formData.email" placeholder="youremail@example.com" class="w-full bg-[#dfe7ff] text-black rounded-lg px-4 py-2">
+        </div>
+        <div class="mb-4">
+          <label for="message" class="text-white">Message</label>
+          <textarea id="message" name="message" [(ngModel)]="formData.message" placeholder="Your message here..." rows="4" class="w-full bg-[#dfe7ff] text-black rounded-lg px-4 py-2"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Send</button>
+      </form>
+    </div>
+  </div>
+
+
+
+

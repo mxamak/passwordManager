@@ -1,52 +1,77 @@
-<div class="container mx-auto my-16 px-10">
-    <h1 class="text-5xl mt-0 mb-5">PasswordKeep Password Manager</h1>
-    <p class="mb-5">In today's digital age, safeguarding your online presence is more crucial than ever. Welcome to SecurePass, the ultimate password manager designed to simplify and strengthen your online security. With SecurePass, you can effortlessly store, manage, and generate complex passwords, ensuring your sensitive information remains protected against cyber threats. Say goodbye to password fatigue and hello to peace of mind with PasswordKeep—your trusted companion for a safer, more secure digital life.</p>
-    <button class="mb-5 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
-        Add New Site
-    </button>
 
-    
+<div class="container mx-auto my-16 px-10 ">
+    <!-- <h1 class="text-5xl mt-0 mb-5">Welcome To Your Password Manager</h1>
+    <p class="mb-5">Welcome to our online password manager—a digital vault tailored to make your online life simpler, safer, and stress-free. Are you tired of the endless cycle of forgotten passwords, the frantic searches for sticky notes, or the anxiety of compromised accounts? You're not alone. We understand the frustration and vulnerability that come with managing multiple passwords. That's why we're here to offer you a solution that not only remembers your passwords but also provides a secure haven for them. With our intuitive interface and robust encryption, you can bid farewell to password woes and embrace a seamless online experience. Let us take the burden off your shoulders, so you can focus on what truly matters. Welcome to a world where forgetting passwords is a thing of the past. Welcome to our family.</p> -->
+    <!-- <button class="mb-5 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
+        Add New Site
+    </button> -->
+
+
     <!--Pop-up message-->
     <div *ngIf="isSuccess" class="p-5 my-3 bg-green-300 text-teal-900 shadow-lg rounded-lg">
         {{successMessage}}
     </div>
     <!-- Add New site Form -->
 
-    <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-900">
-        <h2 class="text-3xl text-center">{{formState}} Site</h2>
-        <p class="text-center">Fill out the following form to {{formState}} site</p>
-        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <div class="flex px-2 py-2 mb-10 my-5">
+        <div class="w-1/2">
+            <h1 class="text-5xl mt-0 mb-5 px-10 py-3">Welcome To Your Password Manager</h1>
+            <p class="mb-5 px-10 py-3">Welcome to our password manager – your digital vault for simplified online security. Forget the hassle of forgotten passwords and scattered notes. With us, your passwords are securely stored and easily accessible, giving you peace of mind and a seamless online experience. Welcome to effortless password management.</p>
+        </div>
+        <div class="w-1/2 px-5 py-3 pr-5 border-4 border-gray-900">
+            <h2 class="text-3xl text-center">{{formState}} Site</h2>
+            <p class="text-center">Fill out the following form to {{formState}} site</p>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+                <div class="flex flex-col">
+                    <label class="text-lg font-medium mb-2">Site Name</label>
+                    <input [(ngModel)]="siteName" type="text" name="siteName" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+                </div>
+                        <!-- <div class="flex flex-col">
+                            <label class="text-lg font-medium mb-2">Site URL</label>
+                            <input [(ngModel)]="siteUrl" type="text" name="siteUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+                        </div> -->
+                <!--email input-->
+                <!-- <div class="flex flex-col">
+                    <label class="text-lg font-medium mb-2">Email</label>
+                    <input [(ngModel)]="email" type="email" name="email" class="border-2 border-gray-900 rounded-lg p-2 w-full">
+                </div> -->
 
-            <div class="flex flex-col">
-                <label class="text-lg font-medium mb-2">Site Name</label>
-                <input [(ngModel)]="siteName" type="text" name="siteName" class="border-2 border-gray-900 p-2 rounded-lg w-full">
-            </div>
+                        <!-- <div class="flex flex-col">
+                            <label class="text-lg font-medium mb-2">Site Image Url</label>
+                            <input [(ngModel)]="siteImgUrl" type="text" name="siteImgUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
+                        </div> -->
+                <!--username input-->
+                <!-- <div class="flex flex-col">
+                    <label class="text-lg font-medium mb-2">Username</label>
+                    <input [(ngModel)]="username" type="text" name="username" class="border-2 border-gray-900 rounded-lg p-2 w-full">
+                </div> -->
 
-            <div class="flex flex-col">
-                <label class="text-lg font-medium mb-2">Site URL</label>
-                <input [(ngModel)]="siteUrl" type="text" name="siteUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
-            </div>
+                <!--password input-->
+                <!-- <div class="flex flex-col">
+                    <label class="text-lg font-medium mb-2">Password</label>
+                    <input [(ngModel)]="password" type="password" name="password"class="border-2 border-gray-900 rounded-lg p-2 w-full">
+                </div> -->
 
-            <div class="flex flex-col">
-                <label class="text-lg font-medium mb-2">Site Image Url</label>
-                <input [(ngModel)]="siteImgUrl" type="text" name="siteImgUrl" class="border-2 border-gray-900 p-2 rounded-lg w-full">
-            </div>
 
-            <button type="submit" class="mt-10 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
-                {{formState}} Site
-            </button>
-            <button type="button" class="mt-10 mx-0.5 px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md">
-                Cancel
-            </button>
-        </form>
+                <button type="submit" class="mt-10 mx-0.5 px-5 py-3 text-sm bg-gray-900 text-white shadow rounded-md">
+                    {{formState}} Site
+                </button>
+                <button type="button" class="mt-10 mx-0.5 px-5 py-3 text-sm border-2 border-gray-900 text-gray-900 shadow rounded-md">
+                    Cancel
+                </button>
+            </form>
+        </div>
     </div>
+    
+    
+    
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         <div *ngFor="let site of allSites | async" class="shadow-lg border-2 border-gray-900 ">
-            <img [src]="site.siteImgUrl" alt="placeholder">
+            <!-- <img [src]="site.siteImgUrl" alt="placeholder"> -->
             <h3 class="p-3 text-xl font-bold">{{site.siteName}}</h3>
             <div class="m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">
-                {{site.siteUrl}}
+                <a href="https://{{site.siteName}}.com" >https://{{site.siteName}}.com</a>
             </div>
             <div class="flex justify-between gap-2 my-3 ml-3 justify-start lg:justify-center">
                 <!-- Add New Password Button -->
